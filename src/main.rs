@@ -3,6 +3,10 @@
 // Process: principal_amount * pow(1 + (interest_rate/times_compounded_per_year), times_compounded_per_year * invested_years)
 // Output: $1500 invested at 4.3% for 6 years compounded 4 times per year is $1938.84.
 
+fn round_decimal(number: f64) -> f64 {
+    (number * 1000.0).round() / 1000.0
+}
+
 fn calculate_compound_interest(principal_amount: f64, invested_years: f64, interest_rate_percentage: f64, times_compounded_per_year: f64) -> f64 {
 }
 
