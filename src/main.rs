@@ -8,6 +8,9 @@ fn round_decimal(number: f64) -> f64 {
 }
 
 fn calculate_compound_interest(principal_amount: f64, invested_years: f64, interest_rate_percentage: f64, times_compounded_per_year: f64) -> f64 {
+    let interest_rate: f64 = interest_rate_percentage / 100.0;
+    let compound_interest: f64 = principal_amount * f64::powf(1.0 + (interest_rate/times_compounded_per_year), times_compounded_per_year * invested_years);
+    round_decimal(compound_interest)
 }
 
 #[cfg(test)]
@@ -17,7 +20,7 @@ mod tests {
 
     #[test]
     fn test_calculate_compound_interest(){
-        assert_eq!(calculate_compound_interest(1500.0, 4.3, 6.0, 4.0), 1938.84)
+        assert_eq!(calculate_compound_interest(1500.0, 4.3, 6.0, 4.0), 1938.84);
         assert_eq!(calculate_compound_interest(2000.0, 5.0, 3.0, 12.0), 2304.09);
         assert_eq!(calculate_compound_interest(3000.0, 6.0, 2.5, 2.0), 3612.40);
         assert_eq!(calculate_compound_interest(2500.0, 4.0, 5.0, 1.0), 3164.49);
