@@ -7,9 +7,9 @@ fn round_decimal(number: f64) -> f64 {
     (number * 1000.0).round() / 1000.0
 }
 
-fn calculate_compound_interest(principal_amount: f64, invested_years: f64, interest_rate_percentage: f64, times_compounded_per_year: f64) -> f64 {
+fn calculate_compound_interest(principal_amount: f64, interest_rate_percentage: f64, invested_years: f64, times_compounded_per_year: f64) -> f64 {
     let interest_rate: f64 = interest_rate_percentage / 100.0;
-    let compound_interest: f64 = principal_amount * f64::powf(1.0 + (interest_rate/times_compounded_per_year), times_compounded_per_year * invested_years);
+    let compound_interest: f64 = principal_amount * f64::powf(1.0 + (interest_rate / times_compounded_per_year), times_compounded_per_year * invested_years);
     round_decimal(compound_interest)
 }
 
