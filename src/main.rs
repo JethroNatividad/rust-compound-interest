@@ -4,7 +4,7 @@
 // Output: $1500 invested at 4.3% for 6 years compounded 4 times per year is $1938.84.
 
 fn round_decimal(number: f64) -> f64 {
-    (number * 1000.0).round() / 1000.0
+    (number * 100.0).round() / 100.0
 }
 
 fn calculate_compound_interest(principal_amount: f64, interest_rate_percentage: f64, invested_years: f64, times_compounded_per_year: f64) -> f64 {
@@ -21,10 +21,20 @@ mod tests {
     #[test]
     fn test_calculate_compound_interest(){
         assert_eq!(calculate_compound_interest(1500.0, 4.3, 6.0, 4.0), 1938.84);
-        assert_eq!(calculate_compound_interest(2000.0, 5.0, 3.0, 12.0), 2304.09);
-        assert_eq!(calculate_compound_interest(3000.0, 6.0, 2.5, 2.0), 3612.40);
-        assert_eq!(calculate_compound_interest(2500.0, 4.0, 5.0, 1.0), 3164.49);
-        assert_eq!(calculate_compound_interest(1800.0, 3.5, 4.0, 3.0), 2113.60);
+        assert_eq!(calculate_compound_interest(1000.0, 5.0, 2.0, 12.0), 1104.94);
+        assert_eq!(calculate_compound_interest(2000.0, 6.0, 3.0, 1.0), 2382.03);
+
+        // Test for edge cases: zero interest rate
+        assert_eq!(calculate_compound_interest(500.0, 0.0, 10.0, 2.0), 500.0);
+
+        // Test for edge cases: zero invested years
+        assert_eq!(calculate_compound_interest(800.0, 8.0, 0.0, 4.0), 800.0);
+
+        // Test for edge cases: zero compound times 
+        assert_eq!(calculate_compound_interest(800.0, 8.0, 3.0, 0.0), 800.0);
+
+        // Test for large values: high principal amount and interest rate
+        assert_eq!(calculate_compound_interest(50000.0, 10.0, 8.0, 12.0), 110908.78);
     }
 }
 
