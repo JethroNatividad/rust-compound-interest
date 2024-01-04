@@ -1,3 +1,6 @@
+use std::io;
+use std::io::Write;
+
 // Write a program to calculate the compound interest.
 // Inputs: starting amount, the number of years to invest, the interest rate, and the number of periods per year to compound.
 // Process: principal_amount * pow(1 + (interest_rate/times_compounded_per_year), times_compounded_per_year * invested_years)
@@ -54,5 +57,15 @@ fn get_input<T: std::str::FromStr>(prompt: &str) -> T {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let principal_amount: f64 = get_input("What is the principal amount? ");
+    let interest_rate_percentage: f64 = get_input("What is the rate %? ");
+    let invested_years: f64 = get_input("What is the number of years? ");
+    let times_compounded_per_year: f64 = get_input("What is the number of times the interest is compounded per year? ");
+
+    let compound_interest: f64 = calculate_compound_interest(principal_amount, interest_rate_percentage, invested_years, times_compounded_per_year);
+    let plural_invested_years: &str = if invested_years > 1.0 { "years" } else { "year" };
+    let plural_times_compounded_per_year: &str = if times_compounded_per_year > 1.0 { "times" } else { "time" };
+
+    println!("${} invested at {}% for {} {} compounded {} {} per year is ${}", principal_amount, interest_rate_percentage, invested_years, plural_invested_years, times_compounded_per_year, plural_times_compounded_per_year, compound_interest);
+    
 }
